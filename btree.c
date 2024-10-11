@@ -61,7 +61,7 @@ void split_parent_at_index(Node *parent, int index) {
     parent->num_keys++;
 }
 
-Node *insert_non_full(Node *node, int key) {
+void insert_non_full(Node *node, int key) {
     if (node->is_leaf) {
         insert_leaf(node, key);
     }else {

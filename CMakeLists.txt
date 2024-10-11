@@ -5,4 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(untitled1 main.c
         btree.c
-        btree.h)
+        btree.h
+        schema.h)
