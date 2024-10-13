@@ -9,44 +9,6 @@
 #include "btree.h"
 
 
-typedef struct  InputBuffer {
-    char* buffer;
-    size_t buffer_length;
-    size_t input_length;
-} InputBuffer;
-
-typedef enum {
-    EXECUTE_SUCCESS,
-    TABLE_FULL
-} ExecuteResult;
-
-
-typedef enum ProcessStatementResultType {
-    STATEMENT_RECOGNISED,
-    STATEMENT_UN_RECOGNISED,
-} ProcessStatementResultType;
-
-
-typedef enum PreparedStatementResultType {
-    PREPARE_SUCESS,
-    PREPARE_SYNTAX_ERROR,
-    PREPARE_UN_RECOGNISED,
-} PreparedStatementResultType;
-
-
-typedef enum StatementType {
-    INSERT,
-    SELECT,
-} StatementType;
-
-typedef struct PreparedStatementResult {
-    Row* row;
-    SchemaType schema_type;
-    StatementType statementType;
-    PreparedStatementResultType result_type;
-}PreparedStatementResult;
-
-
 InputBuffer* createBuffer() {
     InputBuffer* input_buffer = malloc(sizeof(InputBuffer));
     input_buffer->buffer = NULL;

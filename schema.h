@@ -8,7 +8,6 @@ typedef struct Row {
     int id;
 } Row;
 
-
 typedef enum SchemaType {
     USER_TABLE,
     INVALID
@@ -17,7 +16,6 @@ typedef enum SchemaType {
 typedef union  Schema {
     Row* userTable;
 }Schema;
-
 
 typedef struct {
     int file_descriptor;
@@ -29,6 +27,43 @@ typedef struct {
     uint32_t num_rows;
     Pager* pager;
 } Table;
+
+typedef struct  InputBuffer {
+    char* buffer;
+    size_t buffer_length;
+    size_t input_length;
+} InputBuffer;
+
+typedef enum {
+    EXECUTE_SUCCESS,
+    TABLE_FULL
+} ExecuteResult;
+
+
+typedef enum ProcessStatementResultType {
+    STATEMENT_RECOGNISED,
+    STATEMENT_UN_RECOGNISED,
+} ProcessStatementResultType;
+
+
+typedef enum PreparedStatementResultType {
+    PREPARE_SUCESS,
+    PREPARE_SYNTAX_ERROR,
+    PREPARE_UN_RECOGNISED,
+} PreparedStatementResultType;
+
+
+typedef enum StatementType {
+    INSERT,
+    SELECT,
+} StatementType;
+
+typedef struct PreparedStatementResult {
+    Row* row;
+    SchemaType schema_type;
+    StatementType statementType;
+    PreparedStatementResultType result_type;
+}PreparedStatementResult;
 
 const uint32_t ID_OFFSET = 0;
 const uint32_t ID_SIZE = size_of_attr(Row, id);
